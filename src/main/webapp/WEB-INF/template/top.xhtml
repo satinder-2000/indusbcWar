@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns:faces="jakarta.faces"
+    xmlns:ui="jakarta.faces.facelets"
+    xmlns:f="jakarta.faces.core"
+    xmlns:h="jakarta.faces.html"
+    xmlns:c="jakarta.tags.core">
+    <h:body>
+        <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+            <div class="container-fluid">
+                <h:outputLink target="#{request.contextPath}" style-class="navbar-brand">
+                     <h:graphicImage name="images/Logo40White.png"/>
+                </h:outputLink>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle active" href="#" role="button" data-bs-toggle="dropdown">#{msg.register}</a>
+                            <ul class="dropdown-menu">
+                                <h:form>
+                                    <li><h:commandLink  value="#{msg.revenueParty}"  action="RevenuePartyRegister" styleClass="dropdown-item" target="_self">
+                                        </h:commandLink></li>
+                                </h:form>
+                                <h:form>
+                                    <li><h:commandLink  value="#{msg.expenseParty}"  action="ExpensePartyRegister" styleClass="dropdown-item" target="_self">
+                                        </h:commandLink></li>
+                                </h:form>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <h:form>
+                                <h:commandLink action="#{homeMBean.redirectToHome()}" styleClass="nav-link">
+                                    <h:graphicImage library="images" name="house25.png"/>
+                                </h:commandLink>
+                            </h:form>
+                        </li>
+                        <li class="nav-item">
+                            <c:choose>
+                                <c:when test="#{session.getAttribute('access')==null}">
+                                    <h:outputLink value="#{request.contextPath}/login.xhtml" styleClass="nav-link active">#{msg.login}</h:outputLink>
+                                </c:when>
+                                <c:otherwise>
+                                    <h:form prependId="false"><h:commandLink value="#{msg.logout}" action="#{logoutMBean.logout()}" styleClass="nav-link active"/></h:form>
+                                </c:otherwise>
+                            </c:choose>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#{request.contextPath}/aboutUs.xhtml">#{msg.aboutUs}</a>
+                        </li>  
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#{request.contextPath}/faq.xhtml">#{msg.faq}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#{request.contextPath}/contact.xhtml">#{msg.contact}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#{request.contextPath}/termsandconditions.xhtml">#{msg.tandc}</a>
+                        </li> 
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </h:body>
+</html>
